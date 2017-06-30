@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
-<!-- 配置生成器 -->
+<!-- 配置生成器  运行mvn mybatis-generator:generate -DskipTests-->
 <generatorConfiguration>
-	<!-- 可以用于加载配置项或者配置文件，在整个配置文件中就可以使用${propertyKey}的方式来引用配置项 resource：配置资源加载地址，使用resource，MBG从classpath开始找，比如com/myproject/generatorConfig.properties 
-		url：配置资源加载地质，使用URL的方式，比如file:///C:/myfolder/generatorConfig.properties. 注意，两个属性只能选址一个; 
-		另外，如果使用了mybatis-generator-maven-plugin，那么在pom.xml中定义的properties都可以直接在generatorConfig.xml中使用 
-		<properties resource="" url="" /> -->
-		
+
    <classPathEntry location="F:\repo\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar" />
-	<!-- 在MBG工作的时候，需要额外加载的依赖包 location属性指明加载jar/zip包的全路径 <classPathEntry location="/Program 
-		Files/IBM/SQLLIB/java/db2java.zip" /> -->
 
 	<!-- context:生成一组对象的环境 id:必选，上下文id，用于在生成错误时提示 defaultModelType:指定生成对象的样式 
 		1，conditional：类似hierarchical； 2，flat：所有内容（主键，blob）等全部生成在一个对象中； 3，hierarchical：主键生成一个XXKey对象(key 
