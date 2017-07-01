@@ -25,7 +25,7 @@ public class TestBo {
 	@Test
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
-		user.setUsername("mybatis");
+		user.setUsername("李四");
 		user.setAge(30);
 		user.setBalance(100);
 		Calendar cal = Calendar.getInstance();
