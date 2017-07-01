@@ -1,5 +1,8 @@
 package com.study.mybatis;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,13 @@ public class TestBo {
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
 		user.setUsername("mybatis");
+		user.setAge(30);
+		user.setBalance(100);
+		Calendar cal = Calendar.getInstance();
+		cal.set(1992, 10, 17);
+		user.setBirthday(cal.getTime());
+		user.setGender(true);
+		user.setRegisterTime(new Date());
 		this.userBo.insert(user);
 	}
 }
