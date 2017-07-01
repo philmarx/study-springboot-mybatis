@@ -20,10 +20,14 @@
 			targetProject="src/main/java">
 		</javaModelGenerator>
 
-		<javaClientGenerator targetPackage="com.study.mybatis.mapper"
-			type="ANNOTATEDMAPPER" targetProject="src/main/java">
+		<sqlMapGenerator targetPackage="com.study.mybatis.mapper"
+			targetProject="src/main/resources">
+		</sqlMapGenerator>
+		
+		<javaClientGenerator targetPackage="com.study.mybatis.mapper" type="XMLMAPPER"
+			targetProject="src/main/java">
 		</javaClientGenerator>
-
+		
 		<table tableName="user" domainObjectName="UserDmo" mapperName="UserMapper">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
