@@ -5,6 +5,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
@@ -29,4 +30,5 @@ public class DataConfig {
 		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
 		return transactionManager;
 	}
+
 }
