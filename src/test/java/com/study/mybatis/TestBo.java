@@ -15,13 +15,13 @@ import com.study.mybatis.dmo.UserDmo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//默认测试生效
+// 默认测试生效
 @Rollback(false)
 public class TestBo {
 	@Autowired
 	UserBo userBo;
 
-	//如果userBo中事务有异常，会回滚
+	// 如果userBo中事务有异常，会回滚
 	@Test
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
