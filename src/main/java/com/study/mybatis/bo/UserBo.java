@@ -15,5 +15,6 @@ public class UserBo {
 	@Transactional(rollbackFor = Throwable.class)
 	public void insert(UserDmo user) throws Exception {
 		this.userMapper.insert(user);
+		throw new Exception();
 	}
 }

@@ -9,7 +9,6 @@
 	<context id="mysql" defaultModelType="hierarchical"
 		targetRuntime="MyBatis3Simple">
 
-		<!-- 生成的Java文件的编码 -->
 		<property name="javaFileEncoding" value="UTF-8" />
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
@@ -25,7 +24,7 @@
 			type="ANNOTATEDMAPPER" targetProject="src/main/java">
 		</javaClientGenerator>
 
-		<table tableName="role" domainObjectName="RoleDmo" mapperName="RoleMapper">
+		<table tableName="user" domainObjectName="UserDmo" mapperName="UserMapper">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 	</context>

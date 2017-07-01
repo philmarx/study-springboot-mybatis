@@ -1,7 +1,6 @@
 package com.study.mybatis.bean;
 
 import javax.sql.DataSource;
-
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +28,5 @@ public class DataConfig {
 	public DataSourceTransactionManager transactionManager(DataSource dataSource) {
 		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
 		return transactionManager;
-
 	}
 }
