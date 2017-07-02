@@ -233,4 +233,23 @@ public class UserDmo {
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
     }
+
+	public UserDmo() {
+		super();
+	}
+
+	public UserDmo(Long id, String username, Integer age, Boolean gender, Date birthday, Integer balance,
+			Date registerTime) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.age = age;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.balance = balance;
+		this.registerTime = registerTime;
+	}
+    
+    
+    
 }

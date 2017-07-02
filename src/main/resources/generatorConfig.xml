@@ -6,8 +6,7 @@
 	<classPathEntry
 		location="F:\repo\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar" />
 
-	<context id="mysql" defaultModelType="hierarchical"
-		targetRuntime="MyBatis3Simple">
+	<context id="mysql" targetRuntime="MyBatis3Simple">
 
 		<property name="javaFileEncoding" value="UTF-8" />
 
@@ -23,16 +22,15 @@
 		<sqlMapGenerator targetPackage="com.study.mybatis.dao"
 			targetProject="src/main/resources">
 		</sqlMapGenerator>
-		
-		<javaClientGenerator targetPackage="com.study.mybatis.dao" type="XMLMAPPER"
-			targetProject="src/main/java">
+
+		<javaClientGenerator targetPackage="com.study.mybatis.dao"
+			type="XMLMAPPER" targetProject="src/main/java">
 		</javaClientGenerator>
-		
-		<table tableName="user" domainObjectName="UserDmo" mapperName="UserDao">
+
+		<table tableName="role" domainObjectName="RoleDmo" mapperName="RoleDao">
+			<property name="constructorBased" value="true" />
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
-		</table>
-			<table tableName="role" domainObjectName="RoleDmo" mapperName="RoleDao">
-			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+			<columnOverride column="role_name" property="name" javaType="java.lang.String"/>
 		</table>
 	</context>
 
