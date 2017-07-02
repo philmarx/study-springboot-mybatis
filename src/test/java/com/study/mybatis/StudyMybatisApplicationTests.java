@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.study.mybatis.mapper.UserMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,7 +28,6 @@ public class StudyMybatisApplicationTests {
 	@Test
 	public void contextLoads() {
 		System.out.println(beanFactory.getBean(DataSource.class)==null);
-		System.out.println(beanFactory.getBean(UserMapper.class)==null);
 		System.out.println(beanFactory.getBean(JdbcTemplate.class)==null);
 	}
 

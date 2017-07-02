@@ -17,7 +17,7 @@ public class DataConfig {
 	@Bean
 	public MapperScannerConfigurer mapperScannerConfigurer() {
 		MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-		configurer.setBasePackage("com.study.mybatis.mapper");
+		configurer.setBasePackage("com.study.mybatis.dao");
 		configurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
 		return configurer;
 	}

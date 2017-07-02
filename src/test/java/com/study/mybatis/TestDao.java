@@ -10,20 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.study.mybatis.dao.UserDao;
 import com.study.mybatis.dmo.UserDmo;
-import com.study.mybatis.mapper.UserMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Rollback(false)
-public class TestMapper {
+public class TestDao {
 	@Test
-	@Transactional(rollbackFor = Throwable.class)
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
-		user.setUsername("mybatis");
+		user.setUsername("spring-boot");
 		user.setAge(30);
 		user.setBalance(100);
 		Calendar cal = Calendar.getInstance();
@@ -31,18 +29,18 @@ public class TestMapper {
 		user.setBirthday(cal.getTime());
 		user.setGender(true);
 		user.setRegisterTime(new Date());
-		this.userMapper.insert(user);
+		this.userDao.insert(user);
 	}
 
 	@Test
 	public void userFindAll() {
-		List<UserDmo> list = this.userMapper.selectAll();
+		List<UserDmo> list = this.userDao.selectAll();
 		for (UserDmo userDmo : list) {
 			System.out.println(userDmo.getId() + ":" + userDmo.getUsername());
 		}
 	}
 
 	@Autowired
-	UserMapper userMapper;
+	UserDao userDao;
 
 }

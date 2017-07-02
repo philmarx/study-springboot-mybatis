@@ -20,15 +20,18 @@
 			targetProject="src/main/java">
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.study.mybatis.mapper"
+		<sqlMapGenerator targetPackage="com.study.mybatis.dao"
 			targetProject="src/main/resources">
 		</sqlMapGenerator>
 		
-		<javaClientGenerator targetPackage="com.study.mybatis.mapper" type="XMLMAPPER"
+		<javaClientGenerator targetPackage="com.study.mybatis.dao" type="XMLMAPPER"
 			targetProject="src/main/java">
 		</javaClientGenerator>
 		
-		<table tableName="user" domainObjectName="UserDmo" mapperName="UserMapper">
+		<table tableName="user" domainObjectName="UserDmo" mapperName="UserDao">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+			<table tableName="role" domainObjectName="RoleDmo" mapperName="RoleDao">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 	</context>
