@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.study.mybatis.dao.MapDao;
 import com.study.mybatis.dao.UserDao;
 import com.study.mybatis.dmo.UserDmo;
 
@@ -56,7 +58,7 @@ public class TestDao {
 
 	@Test
 	public void userFindOne() throws IllegalArgumentException, IllegalAccessException {
-		UserDmo user = this.userDao.selectByPrimaryKey(30L);
+		UserDmo user = this.userDao.selectByPrimaryKey(31L);
 		Field[] fs = UserDmo.class.getDeclaredFields();
 		for (Field field : fs) {
 			field.setAccessible(true);
@@ -64,6 +66,27 @@ public class TestDao {
 		}
 	}
 
+	@Autowired
+	MapDao mapDao;
+	
+	@Test
+	public void mapFindAll(){
+		List<Map<String, Object>> list=this.mapDao.findAll("role","id");
+		for (Map<String, Object> map : list) {
+			StringBuilder builder=new StringBuilder();
+			for (Map.Entry<String, Object> e : map.entrySet()) {
+				builder.append(","+e.getKey()+":"+e.getValue());
+			}
+			String str=builder.toString().replaceFirst(",", "");
+			System.out.println(str);
+		}
+	}
+	
+	@Test
+	public void count(){
+		int count=this.userDao.countByGenderAndAgeLessThan(true, 25);
+		System.out.println(count);
+	}
 	@Autowired
 	UserDao userDao;
 

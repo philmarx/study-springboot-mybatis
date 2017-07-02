@@ -51,4 +51,8 @@
 		from user where username
 		like #{username}
 	</select>
+	
+	<select id="countByGenderAndAgeLessThan" resultType="java.lang.Integer">
+		select count(1) from user where age &lt; #{age} and gender=#{gender}
+	</select>
 </mapper>
