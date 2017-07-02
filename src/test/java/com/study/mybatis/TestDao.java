@@ -22,7 +22,7 @@ public class TestDao {
 	@Test
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
-		user.setUsername("spring-boot");
+		user.setUsername("spring-boot-mybatis");
 		user.setAge(30);
 		user.setBalance(100);
 		Calendar cal = Calendar.getInstance();
@@ -31,6 +31,19 @@ public class TestDao {
 		user.setGender(true);
 		user.setRegisterTime(new Date());
 		this.userDao.insert(user);
+	}
+
+	@Test
+	public void userUpdate() {
+		UserDmo user = this.userDao.selectByPrimaryKey(31L);
+		user.setAge(25);
+		int result = this.userDao.updateByPrimaryKey(user);
+		System.out.println(result);
+	}
+
+	@Test
+	public void userDelete() {
+		this.userDao.deleteByPrimaryKey(33L);
 	}
 
 	@Test
