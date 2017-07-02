@@ -1,5 +1,6 @@
 package com.study.mybatis;
 
+import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,11 +37,34 @@ public class TestDao {
 	public void userFindAll() {
 		List<UserDmo> list = this.userDao.selectAll();
 		for (UserDmo userDmo : list) {
-			System.out.println(userDmo.getId() + ":" + userDmo.getUsername());
+			System.out.println(userDmo.getId() + ":" + userDmo.getUsername() + ":" + userDmo.getRegisterTime());
+		}
+	}
+
+	@Test
+	public void userFindOne() throws IllegalArgumentException, IllegalAccessException {
+		UserDmo user = this.userDao.selectByPrimaryKey(30L);
+		Field[] fs = UserDmo.class.getDeclaredFields();
+		for (Field field : fs) {
+			field.setAccessible(true);
+			System.out.println(field.getName() + ":" + field.get(user));
 		}
 	}
 
 	@Autowired
 	UserDao userDao;
 
+	@Test
+	public void userFindByExample() {
+		UserDmo example = new UserDmo();
+		example.setUsername("mybatis");
+		List<UserDmo> users = this.userDao.selectByExample(example);
+		System.out.println(users.size());
+	}
+
+	@Test
+	public void userFindByUsernameLike() {
+		List<UserDmo> users = this.userDao.selectByUsernameLike("%m%");
+		System.out.println(users.size());
+	}
 }
