@@ -17,6 +17,7 @@
 
 		<javaModelGenerator targetPackage="com.study.mybatis.dmo"
 			targetProject="src/main/java">
+			<property name="constructorBased" value="true" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="com.study.mybatis.dao"
@@ -31,8 +32,8 @@
 			<property name="constructorBased" value="true" />
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
-			<table tableName="student" domainObjectName="StudentDmo" mapperName="StudentDao">
-			<property name="constructorBased" value="true" />
+		<table tableName="student" domainObjectName="StudentDmo"
+			mapperName="StudentDao">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 	</context>
