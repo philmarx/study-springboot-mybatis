@@ -13,14 +13,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.study.mybatis.dao.ClazzDao;
 import com.study.mybatis.dao.MapDao;
+import com.study.mybatis.dao.StudentDao;
 import com.study.mybatis.dao.UserDao;
+import com.study.mybatis.dmo.ClazzDmo;
+import com.study.mybatis.dmo.StudentDmo;
 import com.study.mybatis.dmo.UserDmo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Rollback(false)
 public class TestDao {
+
 	@Test
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
@@ -68,25 +73,104 @@ public class TestDao {
 
 	@Autowired
 	MapDao mapDao;
-	
+
 	@Test
-	public void mapFindAll(){
-		List<Map<String, Object>> list=this.mapDao.findAll("role","id");
+	public void mapFindAll() {
+		List<Map<String, Object>> list = this.mapDao.findAll("role", "id");
 		for (Map<String, Object> map : list) {
-			StringBuilder builder=new StringBuilder();
+			StringBuilder builder = new StringBuilder();
 			for (Map.Entry<String, Object> e : map.entrySet()) {
-				builder.append(","+e.getKey()+":"+e.getValue());
+				builder.append("," + e.getKey() + ":" + e.getValue());
 			}
-			String str=builder.toString().replaceFirst(",", "");
+			String str = builder.toString().replaceFirst(",", "");
 			System.out.println(str);
 		}
 	}
-	
+
+	@Autowired
+	ClazzDao clazzDao;
+
 	@Test
-	public void count(){
-		int count=this.userDao.countByGenderAndAgeLessThan(true, 25);
+	public void studentFindAll() {
+		List<StudentDmo> list = this.studentDao.selectAll();
+		for (StudentDmo studentDmo : list) {
+			System.out.println(studentDmo);
+		}
+	}
+
+	@Test
+	public void studentFindByClazz_Id() {
+		List<StudentDmo> students = studentDao.selectStudentByClazz_Id(5L);
+		for (StudentDmo studentDmo : students) {
+			System.out.println(studentDmo);
+		}
+	}
+
+	@Test
+	public void studentInsert() {
+		StudentDmo dmo = new StudentDmo(null, "赵三", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(4L));
+		this.studentDao.insert(dmo);
+		dmo = new StudentDmo(null, "张二", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(5L));
+		this.studentDao.insert(dmo);
+	}
+
+	@Test
+	public void studentFindOne() {
+		StudentDmo dmo = studentDao.selectByPrimaryKey(36L);
+		System.out.println(dmo);
+	}
+
+	@Test
+	public void studentUpdate() {
+		StudentDmo student = studentDao.selectByPrimaryKey(35L);
+		student.setClazz(clazzDao.selectByPrimaryKey(4L));
+		studentDao.updateByPrimaryKey(student);
+		System.out.println(student);
+	}
+
+	@Test
+	public void clazzInsert() {
+		ClazzDmo record = new ClazzDmo(null, "4班");
+		this.clazzDao.insert(record);
+	}
+
+	@Test
+	public void clazzFindAll() {
+		List<ClazzDmo> clazzs = clazzDao.selectAll();
+		for (ClazzDmo clazzDmo : clazzs) {
+			System.out.println(clazzDmo);
+		}
+	}
+
+	@Test
+	public void clazzFindOne() {
+		ClazzDmo clazz = clazzDao.selectByPrimaryKey(4L);
+		System.out.println(clazz);
+		List<StudentDmo> students = clazz.getStudents();
+		if (students != null) {
+			for (StudentDmo studentDmo : students) {
+				System.out.println(studentDmo);
+			}
+		}
+	}
+
+	@Test
+	public void clazzUpdate() {
+		ClazzDmo record = clazzDao.selectByPrimaryKey(6L);
+		record.setName("3班");
+		this.clazzDao.updateByPrimaryKey(record);
+		System.out.println(record);
+	}
+
+	@Autowired
+	StudentDao studentDao;
+
+	@Test
+	public void count() {
+		int count = this.userDao.countByGenderAndAgeLessThan(true, 25);
 		System.out.println(count);
 	}
+
 	@Autowired
 	UserDao userDao;
 

@@ -27,10 +27,13 @@
 			type="XMLMAPPER" targetProject="src/main/java">
 		</javaClientGenerator>
 
-		<table tableName="role" domainObjectName="RoleDmo" mapperName="RoleDao">
+		<table tableName="clazz" domainObjectName="ClazzDmo" mapperName="ClazzDao">
 			<property name="constructorBased" value="true" />
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
-			<columnOverride column="role_name" property="name" javaType="java.lang.String"/>
+		</table>
+			<table tableName="student" domainObjectName="StudentDmo" mapperName="StudentDao">
+			<property name="constructorBased" value="true" />
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 	</context>
 
