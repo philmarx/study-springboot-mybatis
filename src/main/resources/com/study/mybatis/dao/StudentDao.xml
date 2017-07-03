@@ -84,5 +84,4 @@
 		select s.id, s.name, s.age, s.gender, s.birthday, c.name
 		cname,c.id cid
 	</sql>
-	<cache eviction="LRU" flushInterval="60000" size="512" readOnly="false" />
 </mapper>
