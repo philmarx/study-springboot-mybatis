@@ -10,10 +10,27 @@ Target Server Type    : MYSQL
 Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 2017-07-02 16:06:25
+Date: 2017-07-03 21:37:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for clazz
+-- ----------------------------
+DROP TABLE IF EXISTS `clazz`;
+CREATE TABLE `clazz` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of clazz
+-- ----------------------------
+INSERT INTO `clazz` VALUES ('4', '1班');
+INSERT INTO `clazz` VALUES ('5', '2班');
+INSERT INTO `clazz` VALUES ('6', '3班');
 
 -- ----------------------------
 -- Table structure for role
@@ -30,6 +47,30 @@ CREATE TABLE `role` (
 -- ----------------------------
 INSERT INTO `role` VALUES ('2', 'USER');
 INSERT INTO `role` VALUES ('3', 'ADMIN');
+
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` tinyint(1) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `clazz` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `clazz_id` (`clazz`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`clazz`) REFERENCES `clazz` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES ('35', '张三', '18', '1', '2017-07-03', '4');
+INSERT INTO `student` VALUES ('36', '李四', '19', '1', '2017-07-03', '5');
+INSERT INTO `student` VALUES ('37', '王二', '19', '1', '2017-07-03', '4');
+INSERT INTO `student` VALUES ('38', '麻', '19', '1', '2017-07-03', '5');
 
 -- ----------------------------
 -- Table structure for user

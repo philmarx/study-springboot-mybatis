@@ -108,10 +108,21 @@ public class TestDao {
 
 	@Test
 	public void studentInsert() {
-		StudentDmo dmo = new StudentDmo(null, "赵三", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(4L));
+		StudentDmo dmo = new StudentDmo(null, "李三", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(4L));
 		this.studentDao.insert(dmo);
-		dmo = new StudentDmo(null, "张二", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(5L));
-		this.studentDao.insert(dmo);
+		System.out.println(dmo.getId());
+	}
+
+	@Test
+	public void clazzDelete() {
+		ClazzDmo clazz = this.clazzDao.selectByPrimaryKey(4L);
+		this.clazzDao.deleteByPrimaryKey(clazz.getId());
+	}
+
+	@Test
+	public void studentDelete() {
+		System.out.println(this.studentDao.deleteByPrimaryKey(39L));
+
 	}
 
 	@Test
