@@ -10,6 +10,7 @@
 		<collection property="students" javaType="java.util.ArrayList"
 			column="id" select="com.study.mybatis.dao.StudentDao.selectStudentByClazz_Id"
 			fetchType="lazy">
+			<!-- column为主键表中的ID,用于嵌套查询SQL语句传入参数 -->
 			<id property="id" column="id" />
 			<result property="name" column="name" />
 			<result property="birthday" column="birthday" />
