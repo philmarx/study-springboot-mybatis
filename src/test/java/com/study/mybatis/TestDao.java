@@ -1,6 +1,7 @@
 package com.study.mybatis;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,16 @@ import com.study.mybatis.dmo.UserDmo;
 @SpringBootTest
 @Rollback(false)
 public class TestDao {
+
+	@Test
+	public void studentFind() {
+		List<StudentDmo> list = studentDao.selectStudentsByNameAndClazz_IdIn(null,
+				Arrays.asList(new Long[] { 4L, 6L }));
+		System.out.println(list.size());
+		for (StudentDmo studentDmo : list) {
+			System.out.println(studentDmo);
+		}
+	}
 
 	@Test
 	public void userInsert() throws Exception {
@@ -108,7 +119,7 @@ public class TestDao {
 
 	@Test
 	public void studentInsert() {
-		StudentDmo dmo = new StudentDmo(null, "李三", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(4L));
+		StudentDmo dmo = new StudentDmo(null, "李三", 19, true, new Date(), this.clazzDao.selectByPrimaryKey(6L));
 		this.studentDao.insert(dmo);
 		System.out.println(dmo.getId());
 	}

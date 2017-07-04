@@ -61,13 +61,11 @@
 			MyBatis Generator, do not modify. This element was generated on Mon Jul 03 
 			19:40:52 CST 2017. -->
 		<include refid="select" />
-		<include refid="from" />
 		where s.id =
 		#{id,jdbcType=BIGINT}
 	</select>
 	<select id="selectStudentByClazz_Id" resultMap="BaseResultMap">
 		<include refid="select" />
-		<include refid="from" />
 		where c.id=#{cid}
 	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
@@ -75,13 +73,25 @@
 			MyBatis Generator, do not modify. This element was generated on Mon Jul 03 
 			19:40:52 CST 2017. -->
 		<include refid="select" />
-		<include refid="from" />
 	</select>
-	<sql id="from">
-		from student s inner join clazz c on s.clazz=c.id
-	</sql>
 	<sql id="select">
 		select s.id, s.name, s.age, s.gender, s.birthday, c.name
-		cname,c.id cid
+		cname,c.id cid from student s inner join clazz c on s.clazz=c.id
 	</sql>
+	<select id="selectStudentsByNameAndClazz_IdIn" resultMap="BaseResultMap">
+		<include refid="select" />
+		<where>
+			<if test="name !=null">
+				s.name=#{name}
+			</if>
+			<if test="clazzIds !=null and clazzIds.size!=0">
+				c.id in
+				<foreach collection="clazzIds" item="id" open="(" separator=","
+					close=")">
+					#{id}
+				</foreach>
+			</if>
+		</where>
+		order by c.id
+	</select>
 </mapper>
