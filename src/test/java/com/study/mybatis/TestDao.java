@@ -38,6 +38,14 @@ public class TestDao {
 	}
 
 	@Test
+	public void studentInsertList() {
+		List<StudentDmo> list = Arrays
+				.asList(new StudentDmo[] { new StudentDmo(null, "a", 18, true, new Date(), new ClazzDmo(6L, null)),
+						new StudentDmo(null, "b", 18, true, new Date(), new ClazzDmo(6L, null)) });
+		this.studentDao.insertList(list);
+	}
+
+	@Test
 	public void userInsert() throws Exception {
 		UserDmo user = new UserDmo();
 		user.setUsername("spring-boot-mybatis");

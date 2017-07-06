@@ -17,7 +17,9 @@ public interface StudentDao {
 
 	List<StudentDmo> selectStudentsByNameAndClazz_IdIn(@Param("name") String name,
 			@Param("clazzIds") List<Long> clazzIds);
-
+	
+	void insertList(@Param("list") List<StudentDmo> list);
+	
 	List<StudentDmo> selectStudentByClazz_Id(Long cid);
 
 	/**
